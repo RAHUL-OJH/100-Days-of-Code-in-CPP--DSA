@@ -1,0 +1,24 @@
+class Solution {
+public:
+    ListNode *deleteDuplicates(ListNode *head) {
+        if(head == NULL)
+            return NULL;
+        ListNode * p = head; // point to prenode
+        int preVal = head->val;
+        while(p->next != NULL)
+        {
+            if(p->next->val == preVal)
+            {
+                // remove the node
+                ListNode * pp = p->next;
+                p->next = pp->next;
+                delete pp; // no need to move forward. Already delete a node
+            }else
+            {
+                preVal = p->next->val;
+                p = p->next; // move forward
+            }
+        }
+        return head;
+    }
+};
